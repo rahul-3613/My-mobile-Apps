@@ -5,11 +5,13 @@ Welcome to my collection of simple web apps!
 These projects are created with HTML (no CSS or JavaScript) and include screenshots and demo videos to showcase functionality.
 
 
+
 🙏 Acknowledgements
 
 ChatGPT ➜ For guidance and advice on building GitHub portfolio.
 
 All teachers and friends ➜ For sharing knowledge freely.
+
 
 
 ✅ 📌 Projects List
@@ -26,6 +28,7 @@ A simple HTML-based currency converter app.
 
 
 🎥 Demo Video: Watch Demo
+
 
 
 
