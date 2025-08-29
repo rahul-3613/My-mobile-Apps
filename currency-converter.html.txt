@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Currency Converter</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    /* Page 1 (Welcome Page) */
+    #page1 {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background: linear-gradient(135deg, #2c3e50, #8e44ad, #27ae60, #c0392b, #d35400);
+      background-size: 400% 400%;
+      animation: gradientBG 12s ease infinite;
+      color: white;
+    }
+    @keyframes gradientBG {
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
+    }
+    #page1 h1 {
+      font-size: 30px;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 6px rgba(0,0,0,0.5);
+    }
+    #enterBtn {
+      padding: 15px 40px;
+      font-size: 18px;
+      font-weight: bold;
+      border: 2px solid white;
+      border-radius: 12px;
+      background-color: #111; /* Dark box */
+      color: white;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    #enterBtn:hover {
+      background-color: #f1f1f1;
+      color: black;
+      transform: scale(1.05);
+    }
+    #developed {
+      margin-top: 30px;
+      font-size: 14px;
+      color: #ddd;
+    }
+
+    /* Page 2 (Converter Page - Dark Theme) */
+    #page2 {
+      display: none;
+      padding: 20px;
+      background: #121212;
+      min-height: 100vh;
+      color: #f0f0f0;
+    }
+    .converter {
+      background: #1e1e1e;
+      padding: 20px;
+      border-radius: 12px;
+      max-width: 400px;
+      margin: auto;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.6);
+      text-align: center;
+    }
+    input, select, button {
+      width: 100%;
+      margin: 8px 0;
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid #444;
+      font-size: 16px;
+      background: #2a2a2a;
+      color: white;
+    }
+    button {
+      background: #0d6efd;
+      color: white;
+      cursor: pointer;
+      font-weight: bold;
+      border: none;
+      transition: 0.3s;
+    }
+    button:hover {
+      background: #0b5ed7;
+    }
+    #result {
+      margin-top: 15px;
+      font-size: 18px;
+      font-weight: bold;
+      color: #0dcaf0;
+    }
+    #history {
+      margin-top: 20px;
+      padding: 15px;
+      background: #1e1e1e;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.5);
+    }
+    #history h3 {
+      margin-top: 0;
+      color: #f8f9fa;
+    }
+    #historyList li {
+      color: #ddd;
+      margin: 5px 0;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Page 1 -->
+  <div id="page1">
+    <h1>Welcome to the Currency Converter App</h1>
+    <button id="enterBtn">Enter</button>
+    <div id="developed">Developed by Rahul</div>
+  </div>
+
+  <!-- Page 2 -->
+  <div id="page2">
+    <div class="converter">
+      <h2>BDT to Other Currencies</h2>
+      <input type="number" id="amount" placeholder="Enter amount in BDT">
+      <select id="currency">
+        <option value="USD">US Dollar (USD)</option>
+        <option value="EUR">Euro (EUR)</option>
+        <option value="INR">Indian Rupee (INR)</option>
+        <option value="GBP">British Pound (GBP)</option>
+        <option value="JPY">Japanese Yen (JPY)</option>
+        <option value="AUD">Australian Dollar (AUD)</option>
+        <option value="CAD">Canadian Dollar (CAD)</option>
+        <option value="SGD">Singapore Dollar (SGD)</option>
+        <option value="CNY">Chinese Yuan (CNY)</option>
+        <option value="MYR">Malaysian Ringgit (MYR)</option>
+        <option value="THB">Thai Baht (THB)</option>
+        <option value="PKR">Pakistani Rupee (PKR)</option>
+        <option value="SAR">Saudi Riyal (SAR)</option>
+        <option value="AED">UAE Dirham (AED)</option>
+        <option value="KWD">Kuwaiti Dinar (KWD)</option>
+        <option value="BHD">Bahraini Dinar (BHD)</option>
+        <option value="NPR">Nepalese Rupee (NPR)</option>
+        <option value="LKR">Sri Lankan Rupee (LKR)</option>
+        <option value="ZAR">South African Rand (ZAR)</option>
+        <option value="TRY">Turkish Lira (TRY)</option>
+      </select>
+      <button onclick="convert()">Convert</button>
+      <div id="result"></div>
+    </div>
+    <div id="history">
+      <h3>Conversion History</h3>
+      <ul id="historyList"></ul>
+    </div>
+  </div>
+
+  <script>
+    // Go to Page 2
+    document.getElementById("enterBtn").onclick = function() {
+      document.getElementById("page1").style.display = "none";
+      document.getElementById("page2").style.display = "block";
+    };
+
+    // Exchange rates (BDT to others, demo values)
+    const rates = {
+      USD: 0.0091, EUR: 0.0085, INR: 0.76, GBP: 0.0072, JPY: 1.34,
+      AUD: 0.014, CAD: 0.012, SGD: 0.012, CNY: 0.066, MYR: 0.043,
+      THB: 0.34, PKR: 2.56, SAR: 0.034, AED: 0.033, KWD: 0.0028,
+      BHD: 0.0032, NPR: 1.20, LKR: 2.72, ZAR: 0.17, TRY: 0.31
+    };
+
+    let historyCount = 1;
+
+    function convert() {
+      let amount = document.getElementById("amount").value;
+      let currency = document.getElementById("currency").value;
+      if (amount === "" || amount <= 0) {
+        alert("Please enter a valid amount!");
+        return;
+      }
+      let rate = rates[currency];
+      let converted = (amount * rate).toFixed(2);
+      document.getElementById("result").innerText = 
+        amount + " BDT = " + converted + " " + currency;
+
+      // Save to history
+      let li = document.createElement("li");
+      li.innerText = historyCount + ". " + amount + " BDT → " + converted + " " + currency;
+      document.getElementById("historyList").appendChild(li);
+      historyCount++;
+    }
+  </script>
+</body>
+</html>
