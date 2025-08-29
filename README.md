@@ -18,9 +18,13 @@ All teachers and friends ➜ For sharing knowledge freely.
 Project 1: Currency Converter
 A simple HTML-based currency converter app.
 
+
+
 📄 View Code:
 
 <img width="1155" height="929" alt="1" src="https://github.com/user-attachments/assets/ba87f203-9d9d-4865-bfd1-d5843e854eef" />
+
+
 
 
 🖼 Screenshots:
@@ -34,13 +38,21 @@ A simple HTML-based currency converter app.
 
 
 
+https://github.com/user-attachments/assets/c70721da-dab7-4746-82c4-5ab1e2458f50
+
+
+
 
 Project 2: C Programming Tutorial
 A beginner-friendly HTML-based tutorial app to learn C programming concepts.
 
+
+
 📄 View Code:
 
 <img width="1195" height="924" alt="2" src="https://github.com/user-attachments/assets/e435a3fd-5318-434d-bf60-d6b5617ddaa9" />
+
+
 
 
 🖼 Screenshots:
@@ -49,8 +61,14 @@ A beginner-friendly HTML-based tutorial app to learn C programming concepts.
 
 
 
+
+
 🎥 Demo Video: Watch Demo:
 
 
+
+
+
+https://github.com/user-attachments/assets/a73f3a73-11da-4da0-a4e2-fd70b9fe4d4f
 
 
